@@ -29,6 +29,11 @@ RUN yarn install
 #   elif [ -f pnpm-lock.yaml ]; then corepack enable pnpm && pnpm run build; \
 #   else echo "Lockfile not found." && exit 1; \
 #   fi
+FROM base AS builder
+WORKDIR /app
+COPY --from=deps /app/node_modules ./node_modules
+COPY . .
+
 RUN yarn run build
 
 # Production image, copy all the files and run next
