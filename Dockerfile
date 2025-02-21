@@ -1,6 +1,6 @@
 FROM node:20-bookworm AS base
 
-RUN yarn add -g prisma
+RUN yarn global add prisma
 
 # Install dependencies only when needed
 FROM base AS deps
